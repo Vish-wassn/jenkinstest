@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-    DOCKERHUB_CREDENTIALS = credentials('dockerhub-cred') (add creds and give id in the script)
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub-cred') 
     }
     
     stages {
@@ -15,7 +15,7 @@ pipeline {
         stage('build image'){
             steps{
                 echo 'creating the docker image'
-                sh 'docker build -t vishudocker555/nodeapp1:$BUILD_NUMBER .' (as u have mentioned the . here it will take the docker file form current directory and you have to give vishudocker555(docker id or username))
+                sh 'docker build -t vishudocker555/nodeapp1:$BUILD_NUMBER .' 
             }
         }
         stage('login to dockerhub'){
@@ -26,7 +26,7 @@ pipeline {
         stage('push image and run th container'){
             steps{
                 sh 'docker push vishudocker555/nodeapp1:$BUILD_NUMBER'
-				sh 'docker run -d vishudocker555/nodeapp1:$BUILD_NUMBER'
+		sh 'docker run -d vishudocker555/nodeapp1:$BUILD_NUMBER'
             }
         }
     }
